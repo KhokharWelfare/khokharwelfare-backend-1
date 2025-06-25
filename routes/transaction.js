@@ -3,13 +3,7 @@ const Transaction = require('../models/Transaction');
 const {authMiddleware, adminMiddleware} = require('../middleware/auth');
 const router = express.Router();
 
-const cors = require('cors');
-app.use(cors({
-  origin: ['https://khokhar-welfarefoundation.vercel.app', 'https://www.khokharwelfarefoundaion.com'],
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-app.options('*', cors());
+
 
 router.post('/', authMiddleware, adminMiddleware, async (req, res) => {
     try{
