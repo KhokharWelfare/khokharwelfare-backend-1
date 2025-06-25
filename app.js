@@ -26,8 +26,8 @@ const app = express();
       "http://localhost:3003",
       "https://example.co",
       "https://www.exaple.co",
-      "https://www.khokharwelfarefoundaion.com/",
-      "https://khokhar-welfare-frontend.vercel.app/",
+      "https://www.khokharwelfarefoundaion.com",
+      "https://khokhar-welfare-frontend.vercel.app",
     ];
 
 const corsOptions = {
@@ -40,6 +40,8 @@ const corsOptions = {
     }
   },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // ✅ ensure OPTIONS is allowed
+  allowedHeaders: ['Content-Type', 'Authorization'], // ✅ allow headers needed for auth
 };
 
 app.use(cors(corsOptions));
