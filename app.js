@@ -20,9 +20,7 @@ const app = express();
 //  'http://localhost:3000',
 //];
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    const allowedOrigins = [
+ const allowedOrigins = [
       "http://localhost:3001",
       "http://localhost:3002",
       "http://localhost:3003",
@@ -31,13 +29,17 @@ const corsOptions = {
       "https://www.khokharwelfarefoundaion.com/",
       "https://khokhar-welfare-frontend.vercel.app/",
     ];
-  console.log("Cors Running");
-    if (allowedOrigins.includes(origin) || !origin) {
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    console.log("CORS Origin:", origin);
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
   },
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
