@@ -44,6 +44,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.options('*', cors(corsOptions));
+
 
 // Middleware: Use cors package with options
 // app.use(
