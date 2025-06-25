@@ -31,7 +31,7 @@ const corsOptions = {
       "https://www.khokharwelfarefoundaion.com/",
       "https://khokhar-welfare-frontend.vercel.app/",
     ];
-
+  console.log("Cors Running");
     if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
     } else {
