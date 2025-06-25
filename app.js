@@ -14,44 +14,35 @@ dotenv.config();
 const app = express();
 
 // Use the correct domain (spelling fix) and proper CORS setup
-const allowedOrigins = [
-  'https://khokharwelfarefoundaion.com',
-  'https://www.khokharwelfarefoundaion.com',
-  'http://localhost:3000',
-];
+//const allowedOrigins = [
+//  'https://khokharwelfarefoundaion.com',
+//  'https://www.khokharwelfarefoundaion.com',
+//  'http://localhost:3000',
+//];
 
 // Middleware: Use cors package with options
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    origin: "*"
   })
 );
 
 app.use(express.json()); // Parse JSON request bodies
 
 // Middleware: Set headers manually for CORS
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(204);
-  }
-  next();
-});
+//app.use((req, res, next) => {
+//  const origin = req.headers.origin;
+//  if (allowedOrigins.includes(origin)) {
+    // res.header('Access-Control-Allow-Origin', origin);
+  // }
+  // res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  // res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  // res.header('Access-Control-Allow-Credentials', 'true');
+  // if (req.method === 'OPTIONS') {
+    // return res.sendStatus(204);
+  // }
+  // next();
+// });
 
 mongoose.set('strictQuery', true);
 // Connect to MongoDB Atlas
