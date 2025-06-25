@@ -20,12 +20,35 @@ const app = express();
 //  'http://localhost:3000',
 //];
 
+const corsOptions = {
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "http://localhost:3001",
+      "http://localhost:3002",
+      "http://localhost:3003",
+      "https://example.co",
+      "https://www.exaple.co",
+      "https://www.khokharwelfarefoundaion.com/",
+      "https://khokhar-welfare-frontend.vercel.app/",
+    ];
+
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
+
+
 // Middleware: Use cors package with options
-app.use(
-  cors({
-    origin: "*"
-  })
-);
+// app.use(
+//   cors({
+//     origin: "*"
+//   })
+// );
 
 app.use(express.json()); // Parse JSON request bodies
 
