@@ -5,13 +5,6 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const router = express.Router();
 
-const cors = require('cors');
-app.use(cors({
-  origin: ['https://khokhar-welfarefoundation.vercel.app', 'https://www.khokharwelfarefoundaion.com'],
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-app.options('*', cors());
 
 // Validate Cloudinary configuration
 const validateCloudinaryConfig = () => {
